@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Properties</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Computed Properties -->
+        <h1>Hasil Penjumlahan {{angka1}} dan {{angka2}} adalah {{hasil}}</h1>
+        <!-- Method Properties -->
+        <button v-on:click="alert">Alert Hai</button>
+        <!-- v-on like addEventListener -->
+
+        <!-- Watch Peoperties -->
+        <h1>Input V-Model</h1>
+        kilometer: <input type="number" v-model="kilometer">
+        meter: <input type="number" v-model="meter">
+        <br>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // vue Component
+        new Vue({
+            el: "#app", // element target
+            data: {
+                angka1: 10,
+                angka2: 40,
+                kilometer: 0,
+                meter: 0,
+            },
+            computed: { // computed properies
+                hasil: function() {
+                    return this.angka1 + this.angka2
+                },
+            },
+            methods: { // methods properties
+                alert: function() {
+                    return alert(`hasil nya adalah ${this.angka1 + this.angka2}`)
+                },
+            },
+            watch: {
+                kilometer: function(val) {
+                    this.kilometer = val
+                    this.meter = val * 1000
+                },
+                meter: function(val) {
+                    this.meter = val
+                    this.kilometer = val / 1000
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
